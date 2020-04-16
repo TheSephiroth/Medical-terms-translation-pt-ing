@@ -1,0 +1,1617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Terms Translator</title>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+
+        <style>
+            .center {
+                margin:1rem;
+            }
+            .container{
+                text-align:center;
+            }
+        </style>
+</head>
+
+<body onload="CreateTableFromJSON()">
+    <div class="container w-100">
+        <input class="btn btn-light center" type="search" id="myInput" onkeyup="searchTerms()" placeholder="Search ">
+        <p id="showData"></p>
+    </div>
+
+
+
+
+
+
+<script>
+    function CreateTableFromJSON() {
+        var listaTermos = [{
+            "Termos": "Abscess",
+                       "Tradução": "abscesso"
+        },
+        {
+            "Termos": "Ache",
+                       "Tradução": "dor"
+        },
+        {
+            "Termos": "Acid Reflux",
+                       "Tradução": "refluxo acido "
+        },
+        {
+            "Termos": "Acne",
+                       "Tradução": "acne"
+        },
+        {
+            "Termos": "Acute",
+                       "Tradução": "agudo"
+        },
+        {
+            "Termos": "Acute Pancreatis",
+                       "Tradução": "pancreatite aguda"
+        },
+        {
+            "Termos": "Adenoids",
+                       "Tradução": "adenoides"
+        },
+        {
+            "Termos": "Adenoma",
+                       "Tradução": "adenoma"
+        },
+        {
+            "Termos": "Airway",
+                       "Tradução": "via aerea"
+        },
+        {
+            "Termos": "Allergies",
+                        "Tradução": "alergia"
+        },
+        {
+            "Termos": "Alzheimers Disease",
+                        "Tradução": "Doença de Alzheimer"
+        },
+        {
+            "Termos": "Amniotic Fluid",
+                        "Tradução": "Fluido Amniotico"
+        },
+        {
+            "Termos": "Analgesic",
+                        "Tradução": "analgesico"
+        },
+        {
+            "Termos": "Anaphylatictic shock",
+                        "Tradução": "Shock anafilitico"
+        },
+        {
+            "Termos": "Anesthesia",
+                        "Tradução": "anestesia"
+        },
+        {
+            "Termos": "Anesthesiologist",
+                        "Tradução": "anestesista"
+        },
+        {
+            "Termos": "Aneurisma",
+                        "Tradução": "aneurisma"
+        },
+        {
+            "Termos": "Angina",
+                        "Tradução": "angina"
+        },
+        {
+            "Termos": "Ankle",
+                        "Tradução": "tornozelo"
+        },
+        {
+            "Termos": "Anomaly",
+                        "Tradução": "anomalia"
+        },
+        {
+            "Termos": "Anorexia Nervosa",
+                        "Tradução": "Anorexia Nervosa"
+        },
+        {
+            "Termos": "Anti-inflamatory",
+                        "Tradução": "Antiinflamatorio"
+        },
+        {
+            "Termos": "antibiotic",
+                        "Tradução": "antibiotico"
+        },
+        {
+            "Termos": "antibody",
+                        "Tradução": "anticorpo"
+        },
+        {
+            "Termos": "anticoagulant",
+                        "Tradução": "anticoagulante"
+        },
+        {
+            "Termos": "antioxidants",
+                        "Tradução": "Antioxidante"
+        },
+        {
+            "Termos": "antiseptic",
+                        "Tradução": "antiseptico"
+        },
+        {
+            "Termos": "aorta",
+                        "Tradução": "aorta"
+        },
+        {
+            "Termos": "aortic valve",
+                        "Tradução": "valvula aortica"
+        },
+        {
+            "Termos": "appendicitis",
+                        "Tradução": "apendicite"
+        },
+        {
+            "Termos": "arthritis",
+                        "Tradução": "artrite"
+        },
+        {
+            "Termos": "ascending colon",
+                        "Tradução": "colon ascendente"
+        },
+        {
+            "Termos": "asthma",
+                        "Tradução": "asma"
+        },
+        {
+            "Termos": "atrophy",
+                        "Tradução": "atrofica"
+        },
+        {
+            "Termos": "auditory nerve",
+                        "Tradução": "nervo auditorio"
+        },
+        {
+            "Termos": "autism",
+                        "Tradução": "autismo"
+        },
+        {
+            "Termos": "axillary artery",
+                        "Tradução": "arteria axilar"
+        },
+        {
+            "Termos": "áxillary vein",
+                        "Tradução": "veia axilar"
+        },
+        {
+            "Termos": "baby blues",
+                        "Tradução": "depressao pos parto"
+        },
+        {
+            "Termos": "back labor",
+                        "Tradução": "dor de costa"
+        },
+        {
+            "Termos": "barrier methods ",
+                        "Tradução": "metodos de barreira"
+        },
+        {
+            "Termos": "benign",
+                        "Tradução": "benigno"
+        },
+        {
+            "Termos": "biopsy",
+                        "Tradução": "biopsia"
+        },
+        {
+            "Termos": "birth certificate",
+                        "Tradução": "certificado de nascimento"
+        },
+        {
+            "Termos": "birthmark",
+                        "Tradução": "marca de nascensa"
+        },
+        {
+            "Termos": "bladder cancer",
+                        "Tradução": "cancer de bexiga"
+        },
+        {
+            "Termos": "blood clot",
+                        "Tradução": "coagulo do sangue"
+        },
+        {
+            "Termos": "blood pressure",
+                        "Tradução": "pressao sanguinea"
+        },
+        {
+            "Termos": "blood pressure cuff",
+                        "Tradução": "manguito de pressao sanguinea"
+        },
+        {
+            "Termos": "blood pressure monitor",
+                        "Tradução": "monitor de pressao sanguinea"
+        },
+        {
+            "Termos": "bloody stool",
+                        "Tradução": "fezes ensanguentadas"
+        },
+        {
+            "Termos": "bone marrow",
+                        "Tradução": "medula ossea"
+        },
+        {
+            "Termos": "bowel movement",
+                        "Tradução": "evacuaçao"
+        },
+        {
+            "Termos": "braxton hicks contractions",
+                        "Tradução": "contraçoes de braxton hicks"
+        },
+        {
+            "Termos": "breast self exame",
+                        "Tradução": "auto exame da mama"
+        },
+        {
+            "Termos": "bronchitis",
+                        "Tradução": "bronquite"
+        },
+        {
+            "Termos": "bru~ise",
+                        "Tradução": "ematoma"
+        },
+        {
+            "Termos": "burn unit",
+                        "Tradução": "unidade de queimados"
+        },
+        {
+            "Termos": "bursitis",
+                        "Tradução": "bursite"
+        },
+        {
+            "Termos": "calf",
+                        "Tradução": "panturrilha"
+        },
+        {
+            "Termos": "cancer",
+                        "Tradução": "cancer"
+        },
+        {
+            "Termos": "carcinogen",
+                        "Tradução": "carcinogen"
+        },
+        {
+            "Termos": "cardiac arrest",
+                        "Tradução": "parada cardiaca"
+        },
+        {
+            "Termos": "cardiovascular disease",
+                        "Tradução": "doença cardiovascular"
+        },
+        {
+            "Termos": "carpal tunnel syndrome",
+                        "Tradução": "sindrome de tunel carpal"
+        },
+        {
+            "Termos": "catheter",
+                        "Tradução": "cateter"
+        },
+        {
+            "Termos": "cavity",
+                        "Tradução": "cavidade"
+        },
+        {
+            "Termos": "celiac diesease",
+                        "Tradução": "doença celiaca"
+        },
+        {
+            "Termos": "cervical spine",
+                        "Tradução": "espinha cervical"
+        },
+        {
+            "Termos": "cervix",
+                        "Tradução": "cervix"
+        },
+        {
+            "Termos": "chickenpox",
+                        "Tradução": "variola"
+        },
+        {
+            "Termos": "chills",
+                        "Tradução": "calafrio"
+        },
+        {
+            "Termos": "cholesterol",
+                        "Tradução": "colesterol"
+        },
+        {
+            "Termos": "chronic",
+                        "Tradução": "cronico"
+        },
+        {
+            "Termos": "chronic pain",
+                        "Tradução": "dor cronica"
+        },
+        {
+            "Termos": "clinical trials",
+                        "Tradução": "testes clinicos"
+        },
+        {
+            "Termos": "coagulate",
+                        "Tradução": "coagular"
+        },
+        {
+            "Termos": "cold",
+                        "Tradução": "frio"
+        },
+        {
+            "Termos": "collarbone",
+                        "Tradução": "coagular"
+        },
+        {
+            "Termos": "colonoscopy",
+                        "Tradução": "colonoscopia"
+        },
+        {
+            "Termos": "colorectal cancer",
+                        "Tradução": "cancer colorretal"
+        },
+        {
+            "Termos": "colostrum",
+                        "Tradução": "colostro"
+        },
+        {
+            "Termos": "coma",
+                        "Tradução": "coma"
+        },
+        {
+            "Termos": "complex carbohydrates",
+                        "Tradução": "carbohidrato complexo"
+        },
+        {
+            "Termos": "compund fracture",
+                        "Tradução": "fratura exposta"
+        },
+        {
+            "Termos": "congenital abnormalities",
+                        "Tradução": "anormalidades congenitas"
+        },
+        {
+            "Termos": "congestive heart failure",
+                        "Tradução": "insuficiência cardíaca congestiva"
+        },
+        {
+            "Termos": "contraceptive",
+                        "Tradução": "contraceptivo"
+        },
+        {
+            "Termos": "contractions",
+                        "Tradução": "contraçoes"
+        },
+        {
+            "Termos": "contusion",
+                        "Tradução": "contusao"
+        },
+        {
+            "Termos": "cornea",
+                        "Tradução": "cornea"
+        },
+        {
+            "Termos": "coronary heart disease",
+                        "Tradução": "doença cardíaca coronária"
+        },
+        {
+            "Termos": "cough",
+                        "Tradução": "tossir"
+        },
+        {
+            "Termos": "crohn's diseas",
+                        "Tradução": "doença de crohn"
+        },
+        {
+            "Termos": "cyst",
+                        "Tradução": "cisto"
+        },
+        {
+            "Termos": "cystic fibrosis",
+                        "Tradução": "fibrose cistica"
+        },
+        {
+            "Termos": "cystitis",
+                        "Tradução": "cistico"
+        },
+        {
+            "Termos": "deafness",
+                        "Tradução": "surdez"
+        },
+        {
+            "Termos": "deep vein thrombosis",
+                        "Tradução": "trombose venosa profunda"
+        },
+        {
+            "Termos": "degenerative",
+            
+            "Tradução": "degenerativa"
+        },
+        {
+            "Termos": "dehydration",
+            
+            "Tradução": "dehidrataçao"
+        },
+        {
+            "Termos": "dentures",
+            
+            "Tradução": "dentadura"
+        },
+        {
+            "Termos": "depression",
+            
+            "Tradução": "depressao"
+        },
+        {
+            "Termos": "dermatitis",
+            
+            "Tradução": "dematite"
+        },
+        {
+            "Termos": "descending colon",
+            
+            "Tradução": "colon descendente"
+        },
+        {
+            "Termos": "diabetes",
+            
+            "Tradução": "diabete"
+        },
+        {
+            "Termos": "dialysis",
+            
+            "Tradução": "dialise"
+        },
+        {
+            "Termos": "digestion",
+            
+            "Tradução": "digestao"
+        },
+        {
+            "Termos": "dilation",
+            
+            "Tradução": "dilataçao"
+        },
+        {
+            "Termos": "disabilities",
+            
+            "Tradução": "deficiencia"
+        },
+        {
+            "Termos": "discharge",
+            
+            "Tradução": "descarga"
+        },
+        {
+            "Termos": "dispensing",
+            
+            "Tradução": "dispensar"
+        },
+        {
+            "Termos": "diuretic",
+            
+            "Tradução": "diuretico"
+        },
+        {
+            "Termos": "diverticulitis",
+            
+            "Tradução": "diverticulite"
+        },
+        {
+            "Termos": "dose/dosage",
+            
+            "Tradução": "dose/dosagen"
+        },
+        {
+            "Termos": "down syndrome",
+            
+            "Tradução": "sindrome de down"
+        },
+        {
+            "Termos": "dull pain",
+            
+            "Tradução": "dor maçante"
+        },
+        {
+            "Termos": "ear canal",
+            
+            "Tradução": "canal auditivo"
+        },
+        {
+            "Termos": "ear drum ",
+            
+            "Tradução": "timpano"
+        },
+        {
+            "Termos": "ear infections",
+            
+            "Tradução": "infeça"
+        },
+        {
+            "Termos": "eating disorders",
+            
+            "Tradução": "infecções de ouvido"
+        },
+        {
+            "Termos": "ectopic pregnancy ",
+            
+            "Tradução": "gravidez ectopico"
+        },
+        {
+            "Termos": "edema",
+            
+            "Tradução": "edema"
+        },
+        {
+            "Termos": "efficacy",
+            
+            "Tradução": "eficacia"
+        },
+        {
+            "Termos": "elbow",
+            
+            "Tradução": "cotovelo"
+        },
+        {
+            "Termos": "electrolytes",
+            
+            "Tradução": "electrolito"
+        },
+        {
+            "Termos": "embolism",
+            
+            "Tradução": "embolismo"
+        },
+        {
+            "Termos": "encephalitis",
+            
+            "Tradução": "encefalia"
+        },
+        {
+            "Termos": "endocarditis",
+            
+            "Tradução": "endocardite"
+        },
+        {
+            "Termos": "endometriosis",
+            
+            "Tradução": "endometriose"
+        },
+        {
+            "Termos": "endoscopy",
+            
+            "Tradução": "endoscopia"
+        },
+        {
+            "Termos": "episiotomy",
+            
+            "Tradução": "episiotomia"
+        },
+        {
+            "Termos": "esophagus",
+            
+            "Tradução": "esofago"
+        },
+        {
+            "Termos": "estrogen replacement therapy",
+            
+            "Tradução": "terapia de substituiçao de estrogenio"
+        },
+        {
+            "Termos": "extraction",
+            
+            "Tradução": "extraçao"
+        },
+        {
+            "Termos": "eyelid",
+            
+            "Tradução": "palpebra"
+        },
+        {
+            "Termos": "eyesight",
+            
+            "Tradução": "visao"
+        },
+        {
+            "Termos": "fallopian tubes",
+            
+            "Tradução": "trompas de falopio"
+        },
+        {
+            "Termos": "Family planning",
+            
+            "Tradução": "planeamento familiar"
+        },
+        {
+            "Termos": "fecal transplant",
+            
+            "Tradução": "transplante fecal"
+        },
+        {
+            "Termos": "female ",
+            
+            "Tradução": "feminino"
+        },
+        {
+            "Termos": "femur",
+            
+            "Tradução": "femur"
+        },
+        {
+            "Termos": "fetal monitoring",
+            
+            "Tradução": "monitoramento fecal "
+        },
+        {
+            "Termos": "fever",
+            
+            "Tradução": "febre"
+        },
+        {
+            "Termos": "fibromyalgia",
+            
+            "Tradução": "fibromyalgia"
+        },
+        {
+            "Termos": "fibrosis",
+            
+            "Tradução": "fibrose"
+        },
+        {
+            "Termos": "flu",
+            
+            "Tradução": "gripe "
+        },
+        {
+            "Termos": "forearm",
+            
+            "Tradução": "antebraço"
+        },
+        {
+            "Termos": "formulation",
+            
+            "Tradução": "fomulaçao"
+        },
+        {
+            "Termos": "gallstone",
+            
+            "Tradução": "cálculos biliares"
+        },
+        {
+            "Termos": "gangrene",
+            
+            "Tradução": "gangrena"
+        },
+        {
+            "Termos": "gastroenteritis",
+            
+            "Tradução": "gastoentrite"
+        },
+        {
+            "Termos": "Generalized anxiety",
+            
+            "Tradução": "Ansiedade generalizada"
+        },
+        {
+            "Termos": "generic drug",
+            
+            "Tradução": "droga generica"
+        },
+        {
+            "Termos": "gestational diabetes",
+            
+            "Tradução": "diabetes gestacionais"
+        },
+        {
+            "Termos": "glucometer",
+            
+            "Tradução": "glicosimetro"
+        },
+        {
+            "Termos": "Glucose",
+            
+            "Tradução": "glucose"
+        },
+        {
+            "Termos": "gonorrhea",
+            
+            "Tradução": "gonorea"
+        },
+        {
+            "Termos": "Gout",
+            
+            "Tradução": "Gota"
+        },
+        {
+            "Termos": "Groin",
+            
+            "Tradução": "Virilha"
+        },
+        {
+            "Termos": "Gum Diseases",
+            
+            "Tradução": "Doenças gengivais"
+        },
+        {
+            "Termos": "Hearing Aid",
+            
+            "Tradução": "Aparelho Auditivo"
+        },
+        {
+            "Termos": "Heart Failure",
+            
+            "Tradução": "insuficiencia Cardiaca"
+        },
+        {
+            "Termos": "Heart murmur",
+            
+            "Tradução": "sopro cardiaco"
+        },
+        {
+            "Termos": "Heart Stroke ",
+            
+            "Tradução": "Ataque cardiaco"
+        },
+        {
+            "Termos": "Heel",
+            
+            "Tradução": "calcanhar"
+        },
+        {
+            "Termos": "Hematoma",
+            
+            "Tradução": "Hematoma"
+        },
+        {
+            "Termos": "Hemoglobina",
+            
+            "Tradução": "hemoglobina"
+        },
+        {
+            "Termos": "Hemorrhage",
+            
+            "Tradução": "hemoragia"
+        },
+        {
+            "Termos": "hemorroids",
+            
+            "Tradução": "Hemorroides"
+        },
+        {
+            "Termos": "Hepatitis",
+            
+            "Tradução": "Hepatite"
+        },
+        {
+            "Termos": "Hernia",
+            
+            "Tradução": "Ernia"
+        },
+        {
+            "Termos": "Herniated Discs",
+            
+            "Tradução": "Discos de Hernia"
+        },
+        {
+            "Termos": "Herpes simplex",
+            
+            "Tradução": "Herpes simplex"
+        },
+        {
+            "Termos": "High blood pressure",
+            
+            "Tradução": "Pressao Sanguinea Alta"
+        },
+        {
+            "Termos": "High Risk pregnancy",
+            
+            "Tradução": "Gravidez de Risco"
+        },
+        {
+            "Termos": "Hives",
+            
+            "Tradução": "Urticaria"
+        },
+        {
+            "Termos": "Hormone replacement therapy",
+            
+            "Tradução": "Terapia de substituiçao de Hormonio"
+        },
+        {
+            "Termos": "Hydrocephalus",
+            
+            "Tradução": "hidrocefalia"
+        },
+        {
+            "Termos": "Hypertension",
+            
+            "Tradução": "hipertensao"
+        },
+        {
+            "Termos": "hypotension",
+            
+            "Tradução": "hipotensao"
+        },
+        {
+            "Termos": "Hypothyroidsm",
+            
+            "Tradução": "Hipotireoidismo"
+        },
+        {
+            "Termos": "immunizations",
+            
+            "Tradução": "Imunizante"
+        },
+        {
+            "Termos": "in remission",
+            
+            "Tradução": "em remissao"
+        },
+        {
+            "Termos": "indigestion",
+            
+            "Tradução": "indigestao"
+        },
+        {
+            "Termos": "infectious diseases",
+            
+            "Tradução": "doenças infecciosas"
+        },
+        {
+            "Termos": "infertility",
+            
+            "Tradução": "infertilidade"
+        },
+        {
+            "Termos": "injury",
+            
+            "Tradução": "lesoes"
+        },
+        {
+            "Termos": "inpatient",
+            
+            "Tradução": "impaciente"
+        },
+        {
+            "Termos": "instep",
+            
+            "Tradução": "peito do pe"
+        },
+        {
+            "Termos": "iron deficiency anemia",
+            
+            "Tradução": "Anemia por deficiencia de ferro"
+        },
+        {
+            "Termos": "irritable bowel syndrome",
+            
+            "Tradução": "sindrome do intestino irritavel"
+        },
+        {
+            "Termos": "Jaundice",
+            
+            "Tradução": "ictericia"
+        },
+        {
+            "Termos": "Joint pain",
+            
+            "Tradução": "dor nas juntas"
+        },
+        {
+            "Termos": "juvenile diabetes",
+            
+            "Tradução": "diabete juvenil"
+        },
+        {
+            "Termos": "kidney disease",
+            
+            "Tradução": "doença dos rins"
+        },
+        {
+            "Termos": "kidney stone",
+            
+            "Tradução": "Pedra nos rins"
+        },
+        {
+            "Termos": "kidneys",
+            
+            "Tradução": "rins"
+        },
+        {
+            "Termos": "lactation",
+            
+            "Tradução": "lactaçao"
+        },
+        {
+            "Termos": "laxative",
+            
+            "Tradução": "laxante"
+        },
+        {
+            "Termos": "lesion",
+            
+            "Tradução": "lesao"
+        },
+        {
+            "Termos": "leukemira",
+            
+            "Tradução": "leucemia"
+        },
+        {
+            "Termos": "lumbar",
+            
+            "Tradução": "lombar"
+        },
+        {
+            "Termos": "lump",
+            
+            "Tradução": "caroço"
+        },
+        {
+            "Termos": "lumpectomy",
+            
+            "Tradução": "lumpectomia"
+        },
+        {
+            "Termos": "lungs",
+            
+            "Tradução": "pulmao"
+        },
+        {
+            "Termos": "lyme disease",
+            
+            "Tradução": "doença de lyme"
+        },
+        {
+            "Termos": "lymph nodes",
+            
+            "Tradução": "ganglios linfaticos"
+        },
+        {
+            "Termos": "malignant",
+            
+            "Tradução": "maligno"
+        },
+        {
+            "Termos": "mammogram",
+            
+            "Tradução": "mamograma"
+        },
+        {
+            "Termos": "mastectomy",
+            
+            "Tradução": "mastectomia"
+        },
+        {
+            "Termos": "measles",
+            
+            "Tradução": "sarampo"
+        },
+        {
+            "Termos": "meningitis",
+            
+            "Tradução": "meningite"
+        },
+        {
+            "Termos": "metastasis",
+            
+            "Tradução": "metastase"
+        },
+        {
+            "Termos": "migraine",
+            
+            "Tradução": "enxaqueca"
+        },
+        {
+            "Termos": "miscarriage",
+            
+            "Tradução": "aborto"
+        },
+        {
+            "Termos": "mole",
+            
+            "Tradução": "verrugas"
+        },
+        {
+            "Termos": "mononucleosis",
+            
+            "Tradução": "mononucleose"
+        },
+        {
+            "Termos": "multiple sclerosis",
+            
+            "Tradução": "scloreose multipla"
+        },
+        {
+            "Termos": "mumps",
+            
+            "Tradução": "caxumba/parotidite"
+        },
+        {
+            "Termos": "muscle sprain",
+            
+            "Tradução": "entorse muscular"
+        },
+        {
+            "Termos": "nausea",
+            
+            "Tradução": "Nausea"
+        },
+        {
+            "Termos": "necrosis",
+            
+            "Tradução": "necrose"
+        },
+        {
+            "Termos": "nephritis",
+            
+            "Tradução": "nefrite"
+        },
+        {
+            "Termos": "non-invasive",
+            
+            "Tradução": "nao invasica"
+        },
+        {
+            "Termos": "nostril",
+            
+            "Tradução": "narina"
+        },
+        {
+            "Termos": "",
+            
+            "Tradução": "narina"
+        },
+        {
+            "Termos": "numbness",
+            
+            "Tradução": "dormencia"
+        },
+        {
+            "Termos": "",
+            
+            "Tradução": "dormencia"
+        },
+        {
+            "Termos": "obesity",
+            
+            "Tradução": "obesidade"
+        },
+        {
+            "Termos": "ointment",
+            
+            "Tradução": "pomada"
+        },
+        {
+            "Termos": "optic nerve",
+            
+            "Tradução": "pomada"
+        },
+        {
+            "Termos": "oral contraceptives",
+            
+            "Tradução": "contraceptivo oral"
+        },
+        {
+            "Termos": "osteoarthritis",
+            
+            "Tradução": "osteoartrite"
+        },
+        {
+            "Termos": "osteoporosis",
+            
+            "Tradução": "osteporose"
+        },
+        {
+            "Termos": "outpatient",
+            
+            "Tradução": "ambulatorial"
+        },
+        {
+            "Termos": "ovarian cancer",
+            
+            "Tradução": "cancer do ovario"
+        },
+        {
+            "Termos": "over the counter medication",
+            
+            "Tradução": "medicaçao sem receita"
+        },
+        {
+            "Termos": "overdose",
+            
+            "Tradução": "overdose"
+        },
+        {
+            "Termos": "pacemaker",
+            
+            "Tradução": "marcapassos"
+        },
+        {
+            "Termos": "pain",
+            
+            "Tradução": "dor"
+        },
+        {
+            "Termos": "pancreas",
+            
+            "Tradução": "pancreas"
+        },
+        {
+            "Termos": "panic attack",
+            
+            "Tradução": "ataque de panico"
+        },
+        {
+            "Termos": "pap smear",
+            
+            "Tradução": "exame de Papanicolaou"
+        },
+        {
+            "Termos": "paraplegic",
+            
+            "Tradução": "paraplegico"
+        },
+        {
+            "Termos": "pericaditis",
+            
+            "Tradução": "pericardite"
+        },
+        {
+            "Termos": "pertussis",
+            
+            "Tradução": "coqueluche"
+        },
+        {
+            "Termos": "pharmaceutical care ",
+            
+            "Tradução": "cuidados farmaceuticos"
+        },
+        {
+            "Termos": "placenta previa",
+            
+            "Tradução": "placenta previa"
+        },
+        {
+            "Termos": "pleurisy",
+            
+            "Tradução": "pleurisia"
+        },
+        {
+            "Termos": "polycystic ovary syndrome",
+            
+            "Tradução": "sindrome dos ovarios policisticos"
+        },
+        {
+            "Termos": "polyp",
+            
+            "Tradução": "polipo"
+        },
+        {
+            "Termos": "post partum",
+            
+            "Tradução": "pos parto"
+        },
+        {
+            "Termos": "postpartum depression",
+            
+            "Tradução": "depressao pos parto"
+        },
+        {
+            "Termos": "pre eclampsia",
+            
+            "Tradução": "pre eclampsia"
+        },
+        {
+            "Termos": "prescription",
+            
+            "Tradução": "prescriçao"
+        },
+        {
+            "Termos": "prognosis",
+            
+            "Tradução": "prognostico"
+        },
+        {
+            "Termos": "prolapse",
+            
+            "Tradução": "prolapso"
+        },
+        {
+            "Termos": "prostate",
+            
+            "Tradução": "prostata"
+        },
+        {
+            "Termos": "proteinuria",
+            
+            "Tradução": "proteinuria"
+        },
+        {
+            "Termos": "prothesis",
+            
+            "Tradução": "protese"
+        },
+        {
+            "Termos": "pulmonary vein",
+            
+            "Tradução": "veia pulmonaria"
+        },
+        {
+            "Termos": "pupil",
+            
+            "Tradução": "pupila "
+        },
+        {
+            "Termos": "pus",
+            
+            "Tradução": "pus"
+        },
+        {
+            "Termos": "rash",
+            
+            "Tradução": "irritaçao da pele"
+        },
+        {
+            "Termos": "relapse",
+            
+            "Tradução": "relapso"
+        },
+        {
+            "Termos": "retina",
+            
+            "Tradução": "retina"
+        },
+        {
+            "Termos": "rheumatoid arthritis",
+            
+            "Tradução": "artite reumatoide"
+        },
+        {
+            "Termos": "rhinitis",
+            
+            "Tradução": "rinite"
+        },
+        {
+            "Termos": "ruptured appendix",
+            
+            "Tradução": "apendice rompido"
+        },
+        {
+            "Termos": "salivary glands",
+            
+            "Tradução": "glandulas de saliva"
+        },
+        {
+            "Termos": "scrabies",
+            
+            "Tradução": "sarna"
+        },
+        {
+            "Termos": "scrotum",
+            
+            "Tradução": "escroto"
+        },
+        {
+            "Termos": "seizure ",
+            
+            "Tradução": "convulsao"
+        },
+        {
+            "Termos": "septic shock",
+            
+            "Tradução": "choque septico"
+        },
+        {
+            "Termos": "sharp pain",
+            
+            "Tradução": "dor aguda"
+        },
+        {
+            "Termos": "shot record",
+            
+            "Tradução": "registro de vacinas"
+        },
+        {
+            "Termos": "sickle cell anemia",
+            
+            "Tradução": "anemia falciforme"
+        },
+        {
+            "Termos": "side effects",
+            
+            "Tradução": "efeitos secundarios"
+        },
+        {
+            "Termos": "sleep apnea",
+            
+            "Tradução": "apnea do sono"
+        },
+        {
+            "Termos": "sleep study",
+            
+            "Tradução": "estudo do sono"
+        },
+        {
+            "Termos": "spasm",
+            
+            "Tradução": "espasmos"
+        },
+        {
+            "Termos": "specialty drugs",
+            
+            "Tradução": "drogas especializadas"
+        },
+        {
+            "Termos": "spine",
+            
+            "Tradução": "espinha"
+        },
+        {
+            "Termos": "spleen",
+            
+            "Tradução": "baço"
+        },
+        {
+            "Termos": "sprain",
+            
+            "Tradução": "entorse"
+        },
+        {
+            "Termos": "steroids",
+            
+            "Tradução": "esteroide"
+        },
+        {
+            "Termos": "stethoscope",
+            
+            "Tradução": "estetoscopio"
+        },
+        {
+            "Termos": "stool culture",
+            
+            "Tradução": "cultura de fezes"
+        },
+        {
+            "Termos": "streep throat",
+            
+            "Tradução": "garganta inflamada"
+        },
+        {
+            "Termos": "stroke",
+            
+            "Tradução": "ataque cardiaco"
+        },
+        {
+            "Termos": "suppository",
+            
+            "Tradução": "supositorio"
+        },
+        {
+            "Termos": "sutures",
+            
+            "Tradução": "sutura"
+        },
+        {
+            "Termos": "syringe",
+            
+            "Tradução": "siringa"
+        },
+        {
+            "Termos": "tachycardia",
+            
+            "Tradução": "taquicardia"
+        },
+        {
+            "Termos": "tear duct",
+            
+            "Tradução": "canal lacrimal"
+        },
+        {
+            "Termos": "tetanus shot",
+            
+            "Tradução": "vacina de tetano"
+        },
+        {
+            "Termos": "therapeutic",
+            
+            "Tradução": "terapeutico"
+        },
+        {
+            "Termos": "thrombosis",
+            
+            "Tradução": "trombose"
+        },
+        {
+            "Termos": "tonsilitis",
+            
+            "Tradução": "amigdalite"
+        },
+        {
+            "Termos": "tonsils ",
+            
+            "Tradução": "amigdalas"
+        },
+        {
+            "Termos": "toxicology",
+            
+            "Tradução": "toxicologia"
+        },
+        {
+            "Termos": "traumatic brain injury",
+            
+            "Tradução": "traumatismo craniano"
+        },
+        {
+            "Termos": "tubal ligation",
+            
+            "Tradução": "ligadura tubaria"
+        },
+        {
+            "Termos": "ulcer",
+            
+            "Tradução": "ulcera"
+        },
+        {
+            "Termos": "ultrasound",
+            
+            "Tradução": "ultrasom"
+        },
+        {
+            "Termos": "urinary incontinence",
+            
+            "Tradução": "incontinencia urinaria"
+        },
+        {
+            "Termos": "urine analysis",
+            
+            "Tradução": "analise de urina"
+        },
+        {
+            "Termos": "uterine bleeding",
+            
+            "Tradução": "sangramento do utero"
+        },
+        {
+            "Termos": "vaginal discharge",
+            
+            "Tradução": "corrimento vaginal"
+        },
+        {
+            "Termos": "vaginal infection",
+            
+            "Tradução": "infeçao vaginal"
+        },
+        {
+            "Termos": "vaginal yeast infection",
+            
+            "Tradução": "infecçao vaginaria  por fungos"
+        },
+        {
+            "Termos": "vasectomy",
+            
+            "Tradução": "vasectomia"
+        },
+        {
+            "Termos": "vertebrae",
+            
+            "Tradução": "vertebra"
+        },
+        {
+            "Termos": "vertigo",
+            
+            "Tradução": "vertigem"
+        },
+        {
+            "Termos": "vitamins",
+            
+            "Tradução": "vitaminas"
+        },
+        {
+            "Termos": "vitiligo",
+            
+            "Tradução": "vitiligo"
+        },
+        {
+            "Termos": "wheezing",
+            
+            "Tradução": "expirar"
+        },
+        {
+            "Termos": "windpipe",
+            
+            "Tradução": "traqueia"
+        },
+        {
+            "Termos": "wound",
+            
+            "Tradução": "ferida"
+        },
+        {
+            "Termos": "yeast infection",
+            
+            "Tradução": "infeçao por fungos"
+        }
+        ]
+
+  
+        var col = [];
+        for (var i = 0; i < listaTermos.length; i++) {
+            for (var key in listaTermos[i]) {
+                if (col.indexOf(key) === -1) {
+                    col.push(key);
+                }
+            }
+        }
+        // CREATE DYNAMIC TABLE.
+        var table = document.createElement("table");
+        table.setAttribute("id","myTable");
+        table.setAttribute("class","table table-striped");
+
+    
+
+        var tr = table.insertRow(-1);                   
+
+        for (var i = 0; i < col.length; i++) {
+            var th = document.createElement("th");     
+            th.innerHTML = col[i];
+            tr.appendChild(th);
+            // th.setAttribute("scope","col");
+        }
+
+        // ADD JSON DATA TO THE TABLE AS ROWS.
+        for (var i = 0; i < listaTermos.length; i++) {
+
+            tr = table.insertRow(-1);
+
+            for (var j = 0; j < col.length; j++) {
+                var tabCell = tr.insertCell(-1);
+                tabCell.innerHTML = listaTermos[i][col[j]];
+            }
+        }
+
+        // FINALLY ADD THE NEWLY CREATED TABLE WITH JSON DATA TO A CONTAINER.
+        var divContainer = document.getElementById("showData");
+        divContainer.innerHTML = "";
+        divContainer.appendChild(table);
+    }
+</script>
+<script>
+    function searchTerms() {
+        // Declare variables
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+
+        // Loop through all table rows, and hide those who don't match the search query
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+</script>
+
+</body>
+</html>
