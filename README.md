@@ -6,7 +6,9 @@ Technologies used:
 -JSON.
 -HTML.
 -BOOTSTRAP.
--Basic Vanilla Javascript
+-Basic Vanilla Javascript.
+
+-------------------------------------------------------------------------------------------
 Made for Medical Interpreters.
 --------------------------------------------------------------------------------------------
 Next Steps:
